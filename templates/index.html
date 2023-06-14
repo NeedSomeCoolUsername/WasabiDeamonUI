@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Head of Wasabi deamon</title>
+</head>
+<body>
+    <h1>Head of Wasabi deamon</h1>
+    <button onclick="getStatus()">Get status</button>
+    <button onclick="location.href='/create_wallet'">Create Wallet</button>
+    <button onclick="getWalletInfo()">Get Wallet Info</button>
+    <button onclick="location.href='/select_wallet'">Select Wallet</button>
+    <button onclick="generateNewAddress()">Generate New Address</button>
+
+    <br>
+    <textarea id="response" rows="20" cols="120" readonly>{{ json_output }}</textarea>
+    <br>
+    <button onclick="send()">Send</button>
+    <button onclick="receive()">Receive</button>
+
+    <script>
+        function getStatus() {
+            fetch('/get_status', { method: 'POST' })
+                .then(response => response.text())
+                .then(data => document.getElementById('response').value = data);
+        }
+
+        function getWalletInfo() {
+            fetch('/get_wallet_info', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => document.getElementById('response').value = JSON.stringify(data, null, 2));
+        }
+
+        function selectWallet() {
+            fetch('/select_wallet', { method: 'POST' })
+            .then(response => response.json())
+        }
+
+        function generateNewAddress() {
+            fetch('/generate_new_address', { method: 'POST' })
+                .then(response => response.text())
+                .then(data => document.getElementById('response').value = data);
+        }
+
+        function send() {
+            TODO: "implement method"
+        }
+
+        function receive() {
+            TODO: "implement method"
+        }
+
+    </script>
+
+</body>
+</html>
