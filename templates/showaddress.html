@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Receive</title>
+</head>
+<body>
+    <h1>Receive</h1>
+
+    <form id="receiveForm" action="/receive" method="POST">
+
+        <label for="label">Unused receive address:</label>
+        <div id="qrcode"><a href="bitcoin:1Agb153xWsbqS9vt8gP4vBFKHkAchLMdSX?amount=1"></a></div>
+
+        <script>
+            $(function() {
+            $('#qrcode a').qrcode({ 
+                render: 'image',
+                text: "1Agb153xWsbqS9vt8gP4vBFKHkAchLMdSX",
+                ecLevel: 'L',
+                size: "203"
+            });
+        });
+        </script>
+
+        <button type="button" onclick="showAddress()">Continue</button>
+        <button type="button" onclick="goBack()">Cancel</button>
+    </form>
+
+    <script>
+
+        function goBack() {
+            window.location.href = "/";
+        }
+
+        function showAddress() {
+            window.location.href = "/show_address";
+        }
+
+    </script>
+</body>
+</html>

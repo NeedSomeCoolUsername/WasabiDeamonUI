@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Send</title>
+</head>
+<body>
+    <h1>Send</h1>
+
+    <form id="sendForm" action="/send" method="POST">
+        <label for="bitcoin_address">Bitcoin address:</label>
+        <input type="text" id="bitcoin_address" name="bitcoin_address" required style="width: 700px;" required><br>
+
+        <label for="amount">Amount:</label>
+        <input type="text" id="amount" name="amount" required><br>
+
+        <label for="label">Label:</label>
+        <input type="text" id="label" name="label"><br>
+
+        <button type="button" onclick="send()">Submit</button>
+        <button type="button" onclick="goBack()">Cancel</button>
+    </form>
+
+    <script>
+
+        function goBack() {
+            window.location.href = "/";
+        }
+
+        function send() {
+            fetch('/send', { method: 'POST' })
+                .then(response => response.text())
+                .then(data => document.getElementById('response').value = data);
+            window.location.href = "/";
+        }
+
+    </script>
+</body>
+</html>

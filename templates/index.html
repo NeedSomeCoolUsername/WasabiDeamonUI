@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Head of Wasabi deamon</title>
+    <title>Head of Wasabi daemon</title>
 </head>
 <body>
-    <h1>Head of Wasabi deamon</h1>
+    <h1>Head of Wasabi daemon</h1>
     <button onclick="getStatus()">Get status</button>
     <button onclick="location.href='/create_wallet'">Create Wallet</button>
     <button onclick="getWalletInfo()">Get Wallet Info</button>
     <button onclick="location.href='/select_wallet'">Select Wallet</button>
-    <button onclick="generateNewAddress()">Generate New Address</button>
+    <button onclick="listUnspentCoins()">List unspent coins</button>
+    <button onclick="listCoins()">List unspent coins</button>
 
     <br>
     <textarea id="response" rows="20" cols="120" readonly>{{ json_output }}</textarea>
+
     <br>
-    <button onclick="send()">Send</button>
-    <button onclick="receive()">Receive</button>
+    <button onclick="location.href='/send'">Send</button>
+    <button onclick="generateNewAddress()">Generate New Address</button>
+
 
     <script>
         function getStatus() {
@@ -42,11 +45,20 @@
         }
 
         function send() {
-            TODO: "implement method"
+            fetch('/send', { method: 'POST' })
+            .then(response => response.json())
         }
 
-        function receive() {
-            TODO: "implement method"
+        function listUnspentCoins() {
+            fetch('/list_unspent_coins', { method: 'POST' })
+                .then(response => response.text())
+                .then(data => document.getElementById('response').value = data);
+        }
+
+        function listCoins() {
+            fetch('/list_unspent_coins', { method: 'POST' })
+                .then(response => response.text())
+                .then(data => document.getElementById('response').value = data);
         }
 
     </script>
